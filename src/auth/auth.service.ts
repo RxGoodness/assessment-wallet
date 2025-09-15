@@ -62,14 +62,18 @@ export class AuthService {
     async login(data: AuthLoginDto) {
         try {
             const user = await this.validateUser(data.email, data.password);
-            if (!user) return null;
+            if (!user) {
+                this.logger.warn(`Login failed for email: ${data.email}`);
+                throw new HttpException('Invalid email or password', HttpStatus.UNAUTHORIZED);
+            }
             const payload = { email: user.email, sub: user.id_pk };
             return {
                 access_token: this.jwtService.sign(payload),
             };
         } catch (error) {
             this.logger.error('Login error', error.stack);
-            throw error;
+            if (error instanceof HttpException) throw error;
+            throw new HttpException(error.message || 'Login failed', HttpStatus.BAD_REQUEST);
         }
     }
 }
