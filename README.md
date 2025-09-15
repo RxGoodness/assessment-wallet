@@ -1,29 +1,151 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Sample .env
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Create a `.env` file in your project root with the following content:
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+```env
+DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>?schema=public"
+SHADOW_DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<shadow_database>?schema=public"
+PORT=8000
+JWT_SECRET="your_jwt_secret"
+```
 
-## Description
+Replace the placeholders with your actual database credentials and secret values.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Wallet API Backend
+
+This project is a backend API for a wallet system, built with NestJS, Prisma, and PostgreSQL. It supports user registration, authentication, and wallet operations (credit, debit). The API is deployed on Render and is fully testable via a provided Postman collection.
+
+---
+
+## Features
+
+- User registration and login (JWT authentication)
+- Credit and debit wallet endpoints
+- Error handling and logging
+- Automated tests (unit, integration)
+- Postman collection for API testing
+- Deployed and accessible via: [https://assessment-wallet.onrender.com](https://assessment-wallet.onrender.com)
+
+---
+
+## Project Setup
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/RxGoodness/assessment-wallet.git
+cd assessment-wallet
+yarn install
+```
+
+---
+
+## Environment Variables
+
+Configure your `.env` file:
+
+```env
+DATABASE_URL=your_postgres_url
+SHADOW_DATABASE_URL=your_shadow_db_url
+PORT=8000
+```
+
+---
+
+## Database Setup
+
+Run Prisma migrations to set up the database:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+---
+
+## Running the Project
+
+```bash
+# development
+yarn start
+
+# watch mode
+yarn start:dev
+
+# production
+yarn start:prod
+```
+
+---
+
+## Testing
+
+Run unit and e2e tests:
+
+```bash
+yarn test
+yarn test:e2e
+yarn test:cov
+```
+
+---
+
+## API Documentation & Postman
+
+Import `POSTMAN_COLLECTION.json` into Postman for ready-to-use API requests.
+- The collection uses an environment variable `baseUrl` set to your hosted API.
+- Login requests automatically save the token for authenticated endpoints.
+
+---
+
+## Deployment
+
+The API is deployed on Render:
+- Hosted URL: [https://assessment-wallet.onrender.com](https://assessment-wallet.onrender.com)
+- Update your Postman collection to use this URL for live testing.
+
+---
+
+## Project Structure
+
+- `src/auth` — Authentication logic (register, login, JWT)
+- `src/user` — User module
+- `src/wallet` — Wallet operations (credit, debit)
+- `prisma` — Prisma schema and migrations
+- `test` — Test files
+
+---
+
+## Error Handling
+
+All endpoints return structured error responses for better client experience and debugging.
+
+---
+
+## Contributing
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+---
+
+## License
+
+MIT
+
+---
+
+## Author
+
+RxGoodness
+
+---
+
+## For Full Project Details
+
+See `PROJECT_EXPLANATION.md` for a complete step-by-step breakdown and reasoning for every decision made in this project.
 
 ## Project setup
 
@@ -49,12 +171,6 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Deployment
