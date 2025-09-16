@@ -22,7 +22,7 @@ This project is a backend API for a wallet system, built with NestJS, Prisma, an
 - User registration and login (JWT authentication)
 - Credit and debit wallet endpoints
 - Error handling and logging
-- Automated tests (unit, integration)
+- Automated tests (unit test)
 - Postman collection for API testing
 - Deployed and accessible via: [https://assessment-wallet.onrender.com](https://assessment-wallet.onrender.com)
 
